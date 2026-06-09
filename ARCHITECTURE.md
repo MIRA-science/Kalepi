@@ -1,0 +1,1 @@
+We use a simple ports and adapter pattern on the backend (look at ../HypothesesCredibilityMarket for example), let's just isolate the three layers of http, database (let's use in-memory for now) and domain (usecase and bellow), write a claude skill

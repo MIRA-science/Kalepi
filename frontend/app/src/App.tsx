@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { Claim } from "@kalepi/mira";
+import type { Claim } from "@mira/types";
 
 export default function App() {
   const [claim, setClaim] = useState<Claim | null>(null);

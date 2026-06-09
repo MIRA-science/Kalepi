@@ -10,9 +10,9 @@ importers:
 
   frontend/app:
     dependencies:
-      '@kalepi/mira':
-        specifier: workspace:*
-        version: link:../mira
+      '@mira/types':
+        specifier: github:MIRA-science/schema#main&path:packages/mira-ts
+        version: https://codeload.github.com/MIRA-science/schema/tar.gz/5878ba0282e883c733d8ba281976f61d85eaea27#path:packages/mira-ts
       react:
         specifier: ^19.0.0
         version: 19.2.7
@@ -35,8 +35,6 @@ importers:
       vite:
         specifier: ^6.0.0
         version: 6.4.3
-
-  frontend/mira: {}
 
 packages:
 
@@ -294,6 +292,10 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
+
+  '@mira/types@https://codeload.github.com/MIRA-science/schema/tar.gz/5878ba0282e883c733d8ba281976f61d85eaea27#path:packages/mira-ts':
+    resolution: {gitHosted: true, integrity: sha512-sH2TOHJOZNAAsuBq47kpxaXBueycLV6/gFyufx9q0NsFiLK1KxcpZg1ut4IDCJMDxQHdZzXQ6G0qGAGoOGeXMQ==, tarball: https://codeload.github.com/MIRA-science/schema/tar.gz/5878ba0282e883c733d8ba281976f61d85eaea27}
+    version: 0.0.1
 
   '@rolldown/pluginutils@1.0.0-beta.27':
     resolution: {integrity: sha512-+d0F4MKMCbeVUJwG96uQ4SgAznZNSq93I3V+9NHA4OpvqG8mRCpGdKmK8l/dl02h2CCDHwW2FqilnTyDcAnqjA==}
@@ -859,6 +861,8 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
+
+  '@mira/types@https://codeload.github.com/MIRA-science/schema/tar.gz/5878ba0282e883c733d8ba281976f61d85eaea27#path:packages/mira-ts': {}
 
   '@rolldown/pluginutils@1.0.0-beta.27': {}
 

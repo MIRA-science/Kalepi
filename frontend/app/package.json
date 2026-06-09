@@ -6,7 +6,7 @@
     "build": "tsc && vite build"
   },
   "dependencies": {
-    "@kalepi/mira": "workspace:*",
+    "@mira/types": "github:MIRA-science/schema#main&path:packages/mira-ts",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
