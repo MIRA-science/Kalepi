@@ -43,6 +43,48 @@ Funder strategy doc
 
 ---
 
+## Installation
+
+
+### Using nix for reproductible environment
+
+Enter the dev shell (requires [Nix](https://nixos.org/) and [direnv](https://direnv.net/)):
+
+```sh
+direnv allow
+```
+
+This puts `uv`, `pnpm`, and `make` in your PATH.
+
+
+## Backend
+
+```sh
+uv sync
+uv run kalepi
+```
+
+API available at `http://localhost:8000` — try `GET /claim`.
+
+## Frontend
+
+```sh
+pnpm install
+pnpm --filter @kalepi/app dev
+```
+
+App available at `http://localhost:5173`.
+
+---
+
+## Generate MIRA types
+
+Both the Python and TypeScript packages are generated from the canonical MIRA schema. Run once (and again whenever the schema changes):
+
+```sh
+make generate
+```
+
 ## MIRA schema elements
 
 Kalepi reads and populates the following MIRA node types:
