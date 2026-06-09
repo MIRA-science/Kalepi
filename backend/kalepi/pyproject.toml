@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "kalepi"
 version = "0.0.1"
-requires-python = ">=3.11"
+requires-python = ">=3.12"
 dependencies = [
   "mira",
   "fastapi>=0.110",
@@ -18,5 +18,3 @@ kalepi = "kalepi.cli:cli"
 [tool.hatch.build.targets.wheel]
 packages = ["src/kalepi"]
 
-[tool.uv.sources]
-mira = { workspace = true }

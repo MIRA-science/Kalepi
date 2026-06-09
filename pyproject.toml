@@ -1,2 +1,5 @@
 [tool.uv.workspace]
-members = ["backend/mira", "backend/kalepi"]
+members = ["backend/kalepi"]
+
+[tool.uv.sources]
+mira = { path = "../MIRA-schema" }
