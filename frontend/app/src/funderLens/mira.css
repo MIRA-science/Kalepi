@@ -1,0 +1,153 @@
+/* ============================================================================
+   MIRA Retrospective Lens v2 — layout + component styles.
+   Ported from the Claude Design handoff (MIRA Retrospective Lens v2.html).
+   Uses the §0 tokens defined in index.css (--dm-*, --ink-*, --panel, --hair).
+   ============================================================================ */
+:root {
+  --radius-md: 0.8125rem;  /* 13px */
+  --radius-lg: 1.125rem;   /* 18px */
+  --radius-20: 1.6875rem;  /* 27px */
+  --radius-full: 9999px;
+  --hatch-gap: repeating-linear-gradient(45deg, rgba(154,154,161,0.55) 0 1.6px, rgba(154,154,161,0.07) 1.6px 7px);
+  --hatch-cyan: repeating-linear-gradient(45deg, rgba(47,132,194,0.55) 0 1.6px, rgba(47,132,194,0.07) 1.6px 7px);
+}
+
+/* ---------- app shell ---------- */
+.mira-root {
+  position: relative; width: 100%; height: 100vh; overflow: hidden;
+  display: flex; flex-direction: column; gap: 15px; padding: 22px 26px 20px;
+  color: var(--ink); font-family: var(--font-display);
+  background:
+    radial-gradient(120% 80% at 50% -10%, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 55%),
+    #E4E4E7;
+}
+.mira-root .panel {
+  background: var(--panel); border: 1px solid var(--hair); border-radius: var(--radius-20);
+  box-shadow: 0 22px 44px -30px rgba(24,24,27,0.22); backdrop-filter: blur(16px);
+}
+.panel-h {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+  padding: 15px 20px 12px; border-bottom: 1px solid var(--hair-soft);
+  font-size: 15px; font-weight: 600; color: var(--ink);
+}
+.panel-sub { font-size: 12px; font-weight: 400; color: var(--ink-4); font-family: var(--font-text); }
+
+/* ---------- header ---------- */
+.mira-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; }
+.logo-dot { width: 34px; height: 34px; border-radius: 9px; flex: 0 0 auto; margin-top: 3px;
+  background: conic-gradient(from 200deg, var(--dm-cyan), var(--dm-blue), var(--dm-teal), var(--dm-cyan)); }
+.breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-3); }
+.crumb-sep { color: var(--ink-4); }
+.grant-title { margin: 3px 0 0; font-size: 25px; font-weight: 500; letter-spacing: -0.015em; line-height: 1.12; max-width: 720px; }
+.vor { display: flex; flex-direction: column; align-items: flex-end; gap: 1px; }
+.vor-k { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-4); }
+.vor-v { font-size: 14px; font-weight: 600; color: var(--ink-2); }
+.gap-badge {
+  display: flex; align-items: center; gap: 9px; cursor: pointer;
+  background: rgba(194,118,26,0.08); border: 1px solid rgba(194,118,26,0.4); color: var(--dm-amber);
+  border-radius: var(--radius-full); padding: 8px 15px 8px 9px; font-size: 13.5px; font-weight: 600; font-family: var(--font-display);
+  transition: background 0.15s ease;
+}
+.gap-badge:hover { background: rgba(194,118,26,0.14); }
+.gap-badge-n { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 99px; background: var(--dm-amber); color: #fff; font-size: 13px; }
+
+/* ---------- view tabs ---------- */
+.view-tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--hair); margin-top: -2px; }
+.view-tab {
+  position: relative; background: none; border: 0; cursor: pointer; font-family: var(--font-display);
+  font-size: 14.5px; font-weight: 500; color: var(--ink-3); padding: 9px 16px 13px; display: flex; align-items: center; gap: 8px;
+}
+.view-tab.active { color: var(--ink); font-weight: 600; }
+.view-tab.active::after { content: ""; position: absolute; left: 12px; right: 12px; bottom: -1px; height: 2.5px; background: var(--dm-cyan); border-radius: 2px; }
+.soon { font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-4); border: 1px solid var(--hair); border-radius: 99px; padding: 1px 7px; }
+
+/* ---------- coverage headline ---------- */
+.coverage-card {
+  background: var(--panel); border: 1px solid var(--hair); border-radius: var(--radius-20);
+  box-shadow: 0 22px 44px -30px rgba(24,24,27,0.2); padding: 18px 24px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.cov-eyebrow { font-size: 12.5px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--dm-cyan); }
+.cov-big { display: flex; align-items: baseline; gap: 10px; margin-top: 8px; }
+.cov-num { font-size: 50px; font-weight: 600; letter-spacing: -0.02em; line-height: 0.9; color: var(--ink); }
+.cov-pct { font-size: 15px; color: var(--ink-2); font-family: var(--font-text); }
+.cov-counts { display: flex; gap: 13px; margin-top: 12px; font-size: 12px; color: var(--ink-3); flex-wrap: wrap; }
+
+/* ---------- layout: resolved (ledger primary + big fingerprint rail) ---------- */
+.layout-resolved { flex: 1; min-height: 0; display: grid; grid-template-columns: 520px 1fr; gap: 15px; }
+.resolved-rail { display: flex; flex-direction: column; gap: 14px; min-height: 0; }
+.resolved-rail .coverage-card { flex: 0 0 auto; }
+.fp-card { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+.fp-body { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; padding: 14px 18px 6px; }
+.fp-body > svg { max-width: 100%; max-height: 100%; width: auto; height: auto; }
+.fp-legend { display: flex; align-items: center; gap: 18px; padding: 11px 20px; border-top: 1px solid var(--hair-soft); font-size: 12.5px; color: var(--ink-2); }
+.fp-legend span { display: flex; align-items: center; gap: 7px; }
+.lg-line { width: 22px; height: 0; border-top: 2.4px dashed var(--dm-blue); }
+.lg-fill { width: 16px; height: 12px; background: rgba(47,132,194,0.2); border: 2px solid var(--dm-cyan); border-radius: 2px; }
+.lg-halo { width: 14px; height: 14px; border-radius: 99px; background: var(--dm-cyan); opacity: 0.18; box-shadow: 0 0 0 3px rgba(47,132,194,0.12); }
+
+/* ---------- ledger ---------- */
+.ledger-main { display: flex; flex-direction: column; min-height: 0; }
+.ledger-scroll { flex: 1; min-height: 0; overflow-y: auto; padding: 8px 24px; }
+.ledger-foot { padding: 12px 24px; border-top: 1px solid var(--hair-soft); font-size: 12.5px; }
+.recon-row.sel { background: rgba(47,132,194,0.05); }
+.recon-row:hover { background: rgba(0,0,0,0.018); }
+.dumb { position: absolute; top: 50%; width: 15px; height: 15px; border-radius: 99px; transform: translate(-50%, -50%); box-sizing: border-box; }
+
+/* ---------- lens bar ---------- */
+.lens-bar { display: flex; align-items: center; gap: 12px; padding: 12px 18px; border-bottom: 1px solid var(--hair-soft); flex-wrap: wrap; }
+.lens-label { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-3); }
+.lens-eye { width: 14px; height: 14px; border-radius: 99px; border: 2.5px solid var(--dm-cyan); }
+.lens-chip { font-family: var(--font-display); font-size: 13px; font-weight: 500; color: var(--ink-2); background: #fff; border: 1px solid var(--hair); border-radius: 99px; padding: 6px 13px; cursor: pointer; transition: all 0.15s ease; }
+.lens-chip:hover { border-color: var(--ink-4); }
+.lens-chip.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+.lens-note { font-size: 11.5px; color: var(--ink-4); font-family: var(--font-text); margin-left: auto; }
+
+/* ---------- drawer (white-box rail) ---------- */
+.drawer-wrap { position: absolute; inset: 0; z-index: 40; }
+.drawer-scrim { position: absolute; inset: 0; background: rgba(24,24,27,0.18); backdrop-filter: blur(1px); animation: fade 0.2s ease; }
+.drawer {
+  position: absolute; top: 0; right: 0; bottom: 0; width: 452px; background: #FAFAFB;
+  border-left: 1px solid var(--hair); box-shadow: -30px 0 60px -30px rgba(24,24,27,0.35);
+  display: flex; flex-direction: column; animation: slideIn 0.24s cubic-bezier(0.22,1,0.36,1);
+}
+@keyframes slideIn { from { transform: translateX(40px); opacity: 0.4; } to { transform: none; opacity: 1; } }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+.drawer-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 16px 18px; border-bottom: 1px solid var(--hair); }
+.drawer-crumbs { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-3); flex-wrap: wrap; }
+.wb-pill { font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; color: #fff; background: var(--dm-blue); border-radius: 4px; padding: 3px 8px; }
+.icon-btn { width: 30px; height: 30px; border-radius: 8px; border: 1px solid var(--hair); background: #fff; cursor: pointer; color: var(--ink-2); font-size: 15px; display: grid; place-items: center; }
+.icon-btn:hover { background: rgba(0,0,0,0.04); }
+.drawer-body { flex: 1; overflow-y: auto; padding: 22px 22px 28px; }
+.drawer-eyebrow { font-size: 11.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--dm-cyan); }
+.drawer-title { margin: 6px 0 0; font-size: 26px; font-weight: 500; letter-spacing: -0.02em; }
+.drawer-section-h { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-3); margin-bottom: 10px; }
+.drawer-stat { background: #fff; border: 1px solid var(--hair); border-radius: var(--radius-lg); padding: 14px 16px; }
+.node-row { width: 100%; display: flex; align-items: center; gap: 12px; background: #fff; border: 1px solid var(--hair); border-radius: var(--radius-md); padding: 11px 13px; cursor: pointer; font-family: var(--font-display); font-size: 13.5px; color: var(--ink); text-align: left; transition: all 0.15s ease; }
+.node-row:hover { border-color: var(--dm-cyan); box-shadow: 0 8px 18px -14px rgba(24,24,27,0.4); }
+.anatomy { background: #fff; border: 1px solid var(--hair); border-radius: var(--radius-lg); padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+.anat-row { display: flex; align-items: center; gap: 11px; }
+.anat-dot { width: 13px; height: 13px; border-radius: 99px; flex: 0 0 auto; }
+.anat-dot.hollow { background: #fff; border: 2.4px solid var(--dm-cyan); }
+.anat-dot.solid { background: var(--dm-cyan); }
+.anat-k { font-size: 14px; font-weight: 600; color: var(--ink); width: 78px; }
+.anat-v { font-size: 15px; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+.anat-note { font-size: 12px; color: var(--ink-3); font-family: var(--font-text); }
+.anat-row.delta { border-radius: var(--radius-md); padding: 9px 12px; margin: 2px 0; }
+.override-box { background: rgba(184,145,14,0.07); border: 1px solid rgba(184,145,14,0.35); border-radius: var(--radius-lg); padding: 14px 16px; }
+.annot-box { background: #fff; border: 1px solid var(--hair); border-left: 3px solid var(--ink-4); border-radius: var(--radius-md); padding: 12px 14px; }
+.art-icon { width: 46px; height: 46px; border-radius: 11px; background: rgba(0,0,0,0.04); display: grid; place-items: center; flex: 0 0 auto; }
+.excerpt { background: #fff; border: 1px solid var(--hair); border-radius: var(--radius-lg); padding: 16px 18px; }
+.trail-strip { display: flex; align-items: center; gap: 10px; font-size: 12.5px; color: var(--ink-3); background: rgba(0,0,0,0.025); border-radius: var(--radius-md); padding: 10px 14px; }
+.trail-strip .arr { color: var(--ink-4); }
+.gap-card { background: #fff; border: 1px solid var(--hair); border-radius: var(--radius-lg); padding: 14px 15px; }
+.gap-reason { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em; color: var(--dm-amber); background: rgba(194,118,26,0.08); border-radius: 4px; padding: 3px 8px; }
+.gap-act { font-family: var(--font-display); font-size: 12.5px; font-weight: 600; border-radius: 8px; padding: 7px 13px; cursor: pointer; border: 1px solid var(--hair); background: #fff; color: var(--ink-2); }
+.gap-act.primary { background: var(--dm-amber); color: #fff; border-color: var(--dm-amber); }
+.gap-act:hover { filter: brightness(0.97); }
+.add-data-btn { font-family: var(--font-display); font-size: 11.5px; font-weight: 600; color: var(--dm-gap); background: none; border: 0; cursor: pointer; padding: 0; }
+.add-data-btn:hover { color: var(--dm-amber); }
+
+.mira-root ::-webkit-scrollbar { width: 9px; height: 9px; }
+.mira-root ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.16); border-radius: 99px; border: 2px solid transparent; background-clip: padding-box; }
+.mira-root ::-webkit-scrollbar-track { background: transparent; }

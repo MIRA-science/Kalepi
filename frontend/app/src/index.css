@@ -1,0 +1,195 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ============================================================================
+   FYLO FONTS  (shipping families: Fylo Display / Fylo Text / Fylo Serif)
+   ============================================================================ */
+@font-face {
+  font-family: "Fylo Display";
+  src: url("/fonts/fylo/fylo-display-regular.woff2") format("woff2"),
+       url("/fonts/fylo/fylo-display-regular.woff") format("woff");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Fylo Display";
+  src: url("/fonts/fylo/fylo-display-medium.woff2") format("woff2"),
+       url("/fonts/fylo/fylo-display-medium.woff") format("woff");
+  font-weight: 500 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Fylo Display";
+  src: url("/fonts/fylo/fylo-display-bold.ttf") format("truetype");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Fylo Display";
+  src: url("/fonts/fylo/fylo-display-black.woff2") format("woff2"),
+       url("/fonts/fylo/fylo-display-black.woff") format("woff");
+  font-weight: 800 900; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Fylo Text";
+  src: url("/fonts/fylo/fylo-text-regular.ttf") format("truetype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Fylo Text";
+  src: url("/fonts/fylo/fylo-text-medium.ttf") format("truetype");
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Fylo Text";
+  src: url("/fonts/fylo/fylo-text-demibold.ttf") format("truetype");
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+
+/* ============================================================================
+   LIGHT FYLO THEME  (the deck's paper treatment + §0 encoding palette)
+   The shadcn token contract is preserved; only the values change to Fylo.
+   ============================================================================ */
+:root {
+  --radius: 0.625rem;
+
+  --font-display: "Fylo Display", system-ui, sans-serif;
+  --font-text: "Fylo Text", system-ui, sans-serif;
+
+  /* §0 encoding palette (locked · light) */
+  --dm-cyan: #2f84c2;   /* value marks (both faces) */
+  --dm-blue: #1b6bab;   /* delta above baseline / proactive */
+  --dm-teal: #1e9a68;   /* second cool tone (retro arc) */
+  --dm-amber: #c2761a;  /* the one warm accent: below baseline / needs-data */
+  --dm-gap: #9a9aa1;    /* needs-data, hatched */
+  --dm-hinge: #b8910e;  /* Potential hinge / selection only */
+
+  /* ink ramp + panels */
+  --ink: #18181b;
+  --ink-2: #3f3f46;
+  --ink-3: #71717a;
+  --ink-4: #a1a1aa;
+  --panel: rgba(255, 255, 255, 0.80);
+  --panel-2: rgba(255, 255, 255, 0.55);
+  --hair: rgba(0, 0, 0, 0.09);
+  --hair-soft: rgba(0, 0, 0, 0.05);
+
+  /* shadcn semantic tokens, remapped to Fylo light */
+  --background: #e4e4e7;
+  --foreground: #18181b;
+  --card: rgba(255, 255, 255, 0.82);
+  --card-foreground: #18181b;
+  --popover: #ffffff;
+  --popover-foreground: #18181b;
+  --primary: #2f84c2;
+  --primary-foreground: #ffffff;
+  --secondary: rgba(0, 0, 0, 0.04);
+  --secondary-foreground: #18181b;
+  --muted: rgba(0, 0, 0, 0.04);
+  --muted-foreground: #71717a;
+  --accent: rgba(0, 0, 0, 0.05);
+  --accent-foreground: #18181b;
+  --destructive: #c2761a;
+  --border: rgba(0, 0, 0, 0.09);
+  --input: rgba(0, 0, 0, 0.12);
+  --ring: #2f84c2;
+
+  /* confidence rail */
+  --confidence: #3f3f46;
+  --confidence-track: rgba(0, 0, 0, 0.08);
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --font-sans: var(--font-display);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* §0 encoding tokens exposed as utilities (text-dm-cyan, bg-dm-amber/10, …) */
+  --color-dm-cyan: var(--dm-cyan);
+  --color-dm-blue: var(--dm-blue);
+  --color-dm-teal: var(--dm-teal);
+  --color-dm-amber: var(--dm-amber);
+  --color-dm-gap: var(--dm-gap);
+  --color-dm-hinge: var(--dm-hinge);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-ink-4: var(--ink-4);
+  --color-panel: var(--panel);
+  --color-hair: var(--hair);
+  --color-confidence: var(--confidence);
+  --color-confidence-track: var(--confidence-track);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    margin: 0;
+    font-family: var(--font-display);
+    color: var(--ink);
+    background:
+      radial-gradient(125% 90% at 50% -8%, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 52%),
+      #e4e4e7;
+    background-attachment: fixed;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer utilities {
+  /* Glass panel — the Fylo surface treatment on the paper ground. */
+  .fy-panel {
+    background: var(--panel);
+    border: 1px solid var(--hair);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 24px 48px -28px rgba(24, 24, 27, 0.22);
+  }
+  .fy-text {
+    font-family: var(--font-text);
+  }
+  /* Hatched fill for "unmeasured"/"sparse": a visible absence, never a caution colour. */
+  .bg-hatch {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      color-mix(in oklab, var(--dm-gap) 26%, transparent) 0,
+      color-mix(in oklab, var(--dm-gap) 26%, transparent) 1.4px,
+      transparent 1.4px,
+      transparent 7px
+    );
+  }
+  /* Amber hatch for the gap rail (needs-data accent). */
+  .bg-hatch-amber {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      color-mix(in oklab, var(--dm-amber) 16%, transparent) 0,
+      color-mix(in oklab, var(--dm-amber) 16%, transparent) 1.4px,
+      transparent 1.4px,
+      transparent 7px
+    );
+  }
+}
